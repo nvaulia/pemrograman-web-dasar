@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Kalkulator Sederhana</title>
+    <title>Kalkulator Novi Can</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,10 +13,12 @@
             background-position: center;
             background-attachment: fixed;
         }
+
         h2 {
             color: #f2fbfe;
             margin-bottom: 20px;
         }
+
         .kalkulator {
             background: #8B2626;
             padding: 30px;
@@ -25,6 +27,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
+
         input {
             padding: 10px;
             margin: 5px;
@@ -32,6 +35,7 @@
             width: 80%;
             box-sizing: border-box;
         }
+
         button {
             padding: 10px 15px;
             margin: 5px;
@@ -42,9 +46,11 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         button:hover {
             background: #2980b9;
         }
+
         .hasil {
             font-size: 28px;
             font-weight: bold;
@@ -53,101 +59,184 @@
         }
     </style>
 </head>
+
 <body>
+
     <div class="kalkulator">
         <h2>Kalkulator Novi Can</h2>
+
         <input type="number" id="angka1" placeholder="Masukkan Angka Pertama">
         <br>
+
         <input type="number" id="angka2" placeholder="Masukkan Angka Kedua">
         <br><br>
+
         <button onclick="tambah()">+</button>
         <button onclick="kurang()">−</button>
         <button onclick="kali()">×</button>
         <button onclick="bagi()">÷</button>
+
         <br>
+
         <button onclick="reset()" style="background:#3ccde7;">Reset</button>
+
         <div class="hasil">
             Hasil: <span id="hasilAngka">0</span>
         </div>
     </div>
 
+
     <div class="kalkulator">
         <h2>Konversi Suhu</h2>
+
         <input type="number" id="celcius" placeholder="Masukkan Suhu Celcius">
         <br>
+
         <button onclick="konversiSuhu()">Konversi</button>
+
         <div class="hasil">
             <p>Fahrenheit : <span id="hasilFahrenheit">0</span> °F</p>
             <p>Kelvin : <span id="hasilKelvin">0</span> K</p>
         </div>
     </div>
 
+
+    <div class="kalkulator">
+        <h2>Kalkulator Diskon</h2>
+
+        <input type="number" id="totalBelanja" placeholder="Masukkan Total Belanja">
+        <br>
+
+        <input type="number" id="persenDiskon" placeholder="Masukkan Diskon (%)">
+        <br>
+
+        <button onclick="hitungDiskon()">Hitung Diskon</button>
+
+        <div class="hasil">
+            <p id="hasilDiskon"></p>
+            <p id="hasilBayar"></p>
+        </div>
+    </div>
+
+
     <div class="kalkulator">
         <h2>Deret Bilangan Ganjil</h2>
+
         <input type="number" id="nilaiN" placeholder="Masukkan Nilai N">
         <br>
+
         <button onclick="tampilkanGanjil()">Tampilkan</button>
+
         <div class="hasil">
             <p id="hasilGanjil"></p>
         </div>
     </div>
 
+
     <script>
+
         function tambah() {
             let a = parseFloat(document.getElementById('angka1').value);
             let b = parseFloat(document.getElementById('angka2').value);
+
             document.getElementById('hasilAngka').innerHTML = a + b;
         }
+
+
         function kurang() {
             let a = parseFloat(document.getElementById('angka1').value);
             let b = parseFloat(document.getElementById('angka2').value);
+
             document.getElementById('hasilAngka').innerHTML = a - b;
         }
+
+
         function kali() {
             let a = parseFloat(document.getElementById('angka1').value);
             let b = parseFloat(document.getElementById('angka2').value);
+
             document.getElementById('hasilAngka').innerHTML = a * b;
         }
+
+
         function bagi() {
             let a = parseFloat(document.getElementById('angka1').value);
             let b = parseFloat(document.getElementById('angka2').value);
+
             if (b === 0) {
                 alert('Peringatan: Tidak bisa membagi dengan angka 0!');
                 return;
             }
+
             document.getElementById('hasilAngka').innerHTML = a / b;
         }
+
+
         function reset() {
             document.getElementById('angka1').value = '';
             document.getElementById('angka2').value = '';
             document.getElementById('hasilAngka').innerHTML = '0';
         }
+
+
         function konversiSuhu() {
             let celcius = parseFloat(document.getElementById('celcius').value);
+
             if (isNaN(celcius)) {
                 alert('Masukkan suhu terlebih dahulu!');
                 return;
             }
-            let fahrenheit = (celcius * 9/5) + 32;
+
+            let fahrenheit = (celcius * 9 / 5) + 32;
             let kelvin = celcius + 273.15;
+
             document.getElementById('hasilFahrenheit').innerHTML = fahrenheit;
             document.getElementById('hasilKelvin').innerHTML = kelvin;
         }
+
+
+        function hitungDiskon() {
+            let total = parseFloat(document.getElementById('totalBelanja').value);
+            let persen = parseFloat(document.getElementById('persenDiskon').value);
+
+            if (isNaN(total) || isNaN(persen)) {
+                alert('Masukkan total belanja dan diskon terlebih dahulu!');
+                return;
+            }
+
+            let diskon = total * persen / 100;
+            let totalBayar = total - diskon;
+
+            document.getElementById('hasilDiskon').innerHTML =
+                'Diskon: Rp ' + diskon;
+
+            document.getElementById('hasilBayar').innerHTML =
+                'Total Bayar: Rp ' + totalBayar;
+        }
+
+
         function tampilkanGanjil() {
             let n = parseInt(document.getElementById('nilaiN').value);
+
             if (n < 1 || isNaN(n)) {
                 alert('Masukkan angka positif!');
                 return;
             }
+
             let hasil = '';
+
             for (let i = 1; i <= n; i += 2) {
                 hasil += i;
+
                 if (i + 2 <= n) {
                     hasil += ', ';
                 }
             }
+
             document.getElementById('hasilGanjil').innerHTML = hasil;
         }
+
     </script>
+
 </body>
 </html>
