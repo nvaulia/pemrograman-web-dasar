@@ -70,6 +70,7 @@
             Hasil: <span id="hasilAngka">0</span>
         </div>
     </div>
+
     <div class="kalkulator">
         <h2>Konversi Suhu</h2>
         <input type="number" id="celcius" placeholder="Masukkan Suhu Celcius">
@@ -80,6 +81,17 @@
             <p>Kelvin : <span id="hasilKelvin">0</span> K</p>
         </div>
     </div>
+
+    <div class="kalkulator">
+        <h2>Deret Bilangan Ganjil</h2>
+        <input type="number" id="nilaiN" placeholder="Masukkan Nilai N">
+        <br>
+        <button onclick="tampilkanGanjil()">Tampilkan</button>
+        <div class="hasil">
+            <p id="hasilGanjil"></p>
+        </div>
+    </div>
+
     <script>
         function tambah() {
             let a = parseFloat(document.getElementById('angka1').value);
@@ -120,6 +132,21 @@
             let kelvin = celcius + 273.15;
             document.getElementById('hasilFahrenheit').innerHTML = fahrenheit;
             document.getElementById('hasilKelvin').innerHTML = kelvin;
+        }
+        function tampilkanGanjil() {
+            let n = parseInt(document.getElementById('nilaiN').value);
+            if (n < 1 || isNaN(n)) {
+                alert('Masukkan angka positif!');
+                return;
+            }
+            let hasil = '';
+            for (let i = 1; i <= n; i += 2) {
+                hasil += i;
+                if (i + 2 <= n) {
+                    hasil += ', ';
+                }
+            }
+            document.getElementById('hasilGanjil').innerHTML = hasil;
         }
     </script>
 </body>
